@@ -1,0 +1,19 @@
+@import '@s-ui/react-atom-input/lib/index.scss';
+@import '@s-ui/react-atom-label/lib/index.scss';
+@import '@s-ui/react-molecule-dropdown-option/lib/index.scss';
+
+.MoleculeSelectField {
+  position: relative;
+}
+
+.MoleculeDropdownList {
+  position: absolute;
+  background: white;
+  border: 1px solid #ccc;
+  z-index: 1000;
+  width: 100%;
+
+  &--hidden {
+    display: none;
+  }
+}

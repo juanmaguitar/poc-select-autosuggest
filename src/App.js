@@ -1,25 +1,35 @@
 import React, { Component } from 'react';
-import logo from './logo.svg';
-import './App.css';
+import MoleculeSelectField from './components/MoleculeSelectField'
 
+const beatles = ['John Lennon', 'Paul McCartney', 'George Harrison', 'Ringo Starr']
+const bands = ['The Beatles', 'Led Zeppelin', 'Queen', 'The Rolling Stones']
+       
 class App extends Component {
+
+  state = {
+    favoriteBeatle: null,
+    favoriteBands: null
+  }
+
+  onChange = (field, e, {value}) => {
+    this.setState({[field] : value})
+  }
+
   render() {
+    const {selection} = this.state
     return (
       <div className="App">
-        <header className="App-header">
-          <img src={logo} className="App-logo" alt="logo" />
-          <p>
-            Edit <code>src/App.js</code> and save to reload.
-          </p>
-          <a
-            className="App-link"
-            href="https://reactjs.org"
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            Learn React
-          </a>
-        </header>
+        <h1>App</h1>
+        <div style={{width: '500px'}}>
+          <h2>Select (unique selection)</h2>
+          <pre>{JSON.stringify(selection, null, 2)}</pre>
+          <MoleculeSelectField label="Favourite Beatle" options={beatles} onChange={this.onChange.bind(this, 'favoriteBeatle')} closeOnSelect/>
+        </div>
+        <div style={{width: '500px'}}>
+          <h2>Select (multi selection)</h2>
+          <pre>{JSON.stringify(selection, null, 2)}</pre>
+          <MoleculeSelectField label="Favourite Bands" options={bands} onChange={this.onChange.bind(this, 'favoriteBands')} multiselection/>
+        </div>
       </div>
     );
   }
