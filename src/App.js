@@ -20,20 +20,24 @@ class App extends Component {
   }
 
   render() {
-    const { selection } = this.state
     return (
       <div className="App">
         <h1>App</h1>
 
-        <div style={{ width: "500px" }}>
-          <h2>Select (unique selection)</h2>
-          <MoleculeSelectField
-            label="Favourite Beatle"
-            options={beatles}
-            onChange={this.onChange.bind(this, "favoriteBeatle")}
-            closeOnSelect
-          />
-        </div>
+        {
+          /*
+          <div style={{ width: "500px" }}>
+            <h2>Select (unique selection)</h2>
+            <MoleculeSelectField
+              label="Favourite Beatle"
+              options={beatles}
+              onChange={this.onChange.bind(this, "favoriteBeatle")}
+              closeOnSelect
+            />
+          </div>
+          
+          */
+        }
 
         <div style={{ width: "500px" }}>
           <h2>Select (multi selection)</h2>
@@ -44,7 +48,6 @@ class App extends Component {
             multiselection
           />
         </div>
-
       </div>
     )
   }

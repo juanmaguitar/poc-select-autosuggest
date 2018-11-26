@@ -9,7 +9,7 @@ export default BaseComponent => {
     static displayName = `WithSelectUi(${displayName})`
 
     render() {
-      const { onClick } = this.props
+      const { onClick, ...props } = this.props
       const inputProps = {
         rightIcon: arrowDown,
         onClickRightIcon: onClick,
@@ -17,7 +17,7 @@ export default BaseComponent => {
       }
 
       return (
-        <BaseComponent {...inputProps} />
+        <BaseComponent {...inputProps} {...props} />
       )
     }
   }

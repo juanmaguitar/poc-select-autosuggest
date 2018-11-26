@@ -4,6 +4,7 @@ import AtomLabel from "@s-ui/react-atom-label"
 import MoleculeInputTags from "@s-ui/react-molecule-input-tags"
 import MoleculeDropdownList from "../MoleculeDropdownList"
 
+import WithState from '../hoc/withState'
 import WithOpenToggle from '../hoc/withOpenToggle'
 import WithSelectUi from '../hoc/withSelectUi'
 
@@ -21,42 +22,43 @@ const closeIcon = (
   </svg>
 )
 
-class MoleculeSelectField extends Component {
-  state = {
-    values: []
+const MoleculeSelectField = props => {
+
+  console.log(props)
+  const { label, options, isOpen, onToggle, onChange, closeOnSelect, values } = props
+
+  const handleMultiSelection = (ev, { value: valueOptionSelected }) => {
+    const newValues = values.includes(valueOptionSelected)
+      ? values.filter(value => value !== valueOptionSelected)
+      : [...values, valueOptionSelected]
+
+    onChange(ev, { values: newValues })
+    closeOnSelect && onToggle(ev, { open: false })
+
   }
 
-  handleMultiSelection = (ev, { value: valueOptionSelected }) => {
-    const { onChange, closeOnSelect } = this.props
-    const { open: currentOpen, values: valuesState } = this.state
-    const open = closeOnSelect ? false : currentOpen
-    const values = valuesState.includes(valueOptionSelected)
-      ? valuesState.filter(value => value !== valueOptionSelected)
-      : [...valuesState, valueOptionSelected]
-
-    this.setState({ values, open }, () => onChange && onChange(ev, { values }))
+  const handleChangeTags = (ev, { tags: values }) => {
+    onChange(ev, { values })
+    closeOnSelect && onToggle(ev, { open: false })
   }
 
-  render() {
-    const { values } = this.state
-    const { label, multiselection, options, isOpen, onToggle } = this.props
-    return (
-      <div className={BASE_CLASS}>
-        <AtomLabel name="atomLabelName" text={label} />
-        <MoleculeInputSelect tags={values} onClick={onToggle} tagsCloseIcon={closeIcon}/>
-        <MoleculeDropdownList checkbox visible={isOpen}>
-          {options.map((option, index) => (
-            <ListOption
-              value={option}
-              key={index}
-              onSelect={this.handleMultiSelection}
-              selected={values.includes(option)}
-            />
-          ))}
-        </MoleculeDropdownList>
-      </div>
-    )
-  }
+  return (
+    <div className={BASE_CLASS}>
+      <AtomLabel name="atomLabelName" text={label} />
+      <MoleculeInputSelect tags={values} onClick={onToggle} tagsCloseIcon={closeIcon} onChangeTags={handleChangeTags}/>
+      <MoleculeDropdownList checkbox visible={isOpen}>
+        {options.map((option, index) => (
+          <ListOption
+            value={option}
+            key={index}
+            onSelect={handleMultiSelection}
+            selected={values && values.includes(option)}
+          />
+        ))}
+      </MoleculeDropdownList>
+    </div>
+  )
+  
 }
 
-export default WithOpenToggle(MoleculeSelectField)
+export default WithState({ multiselection: true })(WithOpenToggle(MoleculeSelectField))
