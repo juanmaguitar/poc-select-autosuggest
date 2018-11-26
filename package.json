@@ -3,7 +3,8 @@
   "version": "0.1.0",
   "private": true,
   "dependencies": {
-    "@s-ui/react-atom-input": "1",
+    "@s-ui/react-atom-input": "2",
+    "@s-ui/react-molecule-input-tags": "1",
     "@s-ui/react-atom-label": "1",
     "@s-ui/react-molecule-dropdown-option": "1",
     "classnames": "^2.2.6",

@@ -1,5 +1,6 @@
 @import '@s-ui/react-atom-input/lib/index.scss';
 @import '@s-ui/react-atom-label/lib/index.scss';
+@import '@s-ui/react-molecule-input-tags/lib/index.scss';
 @import '@s-ui/react-molecule-dropdown-option/lib/index.scss';
 
 .MoleculeSelectField {
@@ -16,4 +17,8 @@
   &--hidden {
     display: none;
   }
+}
+
+.sui-AtomInput-input--readOnly[disabled] {
+  background: #fff;
 }
