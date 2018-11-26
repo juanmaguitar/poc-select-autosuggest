@@ -1,14 +1,16 @@
 import React, { Component } from "react"
 
 import AtomLabel from "@s-ui/react-atom-label"
-import MoleculeInputSelect from "../MoleculeInputSelect"
 import MoleculeDropdownList from "../MoleculeDropdownList"
+import AtomInput from "@s-ui/react-atom-input"
 
-import WithOpenToggle from './hoc/withOpenToggle'
+import WithOpenToggle from '../hoc/withOpenToggle'
+import WithSelectUi from '../hoc/withSelectUi'
 
 import ListOption from './Option'
 
 const BASE_CLASS = `MoleculeSelectField`
+const MoleculeInputSelect = WithSelectUi(AtomInput)
 
 class MoleculeSelectField extends Component {
   state = {
