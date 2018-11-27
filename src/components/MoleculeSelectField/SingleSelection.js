@@ -1,10 +1,9 @@
-import React, { Component } from "react"
+import React from "react"
 
 import AtomLabel from "@s-ui/react-atom-label"
 import MoleculeDropdownList from "../MoleculeDropdownList"
 import AtomInput from "@s-ui/react-atom-input"
 
-import WithState from '../hoc/withState'
 import WithOpenToggle from '../hoc/withOpenToggle'
 import WithSelectUi from '../hoc/withSelectUi'
 
@@ -13,7 +12,7 @@ import ListOption from './Option'
 const BASE_CLASS = `MoleculeSelectField`
 const MoleculeInputSelect = WithSelectUi(AtomInput)
 
-const MoleculeSelectField = props => {
+const MoleculeSelectFieldSingleSelection = props => {
   
   const { value, label, options, isOpen, onToggle, onChange, closeOnSelect } = props
 
@@ -40,4 +39,10 @@ const MoleculeSelectField = props => {
   )
 }
 
-export default WithState({ multiselection: false })(WithOpenToggle(MoleculeSelectField))
+MoleculeSelectFieldSingleSelection.defaultProps = {
+  value: '',
+  onChange: () => {},
+  onToggle: () => {}
+}
+
+export default WithOpenToggle(MoleculeSelectFieldSingleSelection)

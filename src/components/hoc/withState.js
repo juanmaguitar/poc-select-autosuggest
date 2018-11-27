@@ -1,18 +1,22 @@
 import React, {Component} from 'react'
 
-const withState = ({multiselection = false}) => BaseComponent => {
+const withState = BaseComponent => {
   return class BaseComponentWithState extends Component {
     state = {
-      value: this.props.value || multiselection ? [] : ''
+      value: this.props.value
+    }
+
+    static defaultProps = {
+      onChange: () => {}
     }
 
     onChange = (e, {value}) => {
-      this.setState({value})
+      const {onChange} = this.props
+      this.setState({value}, () => onChange(e, {value}))
+
     }
 
     render() {
-      console.log('this.props...')
-      console.log(this.props)
       const {value} = this.state
       const {onChange, props} = this
       return (

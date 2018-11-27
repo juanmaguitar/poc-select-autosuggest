@@ -24,20 +24,17 @@ class App extends Component {
       <div className="App">
         <h1>App</h1>
 
-        {
-          /*
-          <div style={{ width: "500px" }}>
-            <h2>Select (unique selection)</h2>
-            <MoleculeSelectField
-              label="Favourite Beatle"
-              options={beatles}
-              onChange={this.onChange.bind(this, "favoriteBeatle")}
-              closeOnSelect
-            />
-          </div>
-          
-          */
-        }
+        <pre><code>{ JSON.stringify(this.state, null, 2) }</code></pre>
+ 
+        <div style={{ width: "500px" }}>
+          <h2>Select (unique selection)</h2>
+          <MoleculeSelectField
+            label="Favourite Beatle"
+            options={beatles}
+            onChange={this.onChange.bind(this, "favoriteBeatle")}
+            closeOnSelect
+          />
+        </div>
 
         <div style={{ width: "500px" }}>
           <h2>Select (multi selection)</h2>

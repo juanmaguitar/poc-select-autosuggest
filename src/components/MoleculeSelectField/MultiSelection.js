@@ -1,10 +1,9 @@
-import React, { Component } from "react"
+import React from "react"
 
 import AtomLabel from "@s-ui/react-atom-label"
 import MoleculeInputTags from "@s-ui/react-molecule-input-tags"
 import MoleculeDropdownList from "../MoleculeDropdownList"
 
-import WithState from '../hoc/withState'
 import WithOpenToggle from '../hoc/withOpenToggle'
 import WithSelectUi from '../hoc/withSelectUi'
 
@@ -22,23 +21,23 @@ const closeIcon = (
   </svg>
 )
 
-const MoleculeSelectField = props => {
+const MoleculeSelectFieldMultiSelection = props => {
 
-  console.log(props)
-  const { label, options, isOpen, onToggle, onChange, closeOnSelect, values } = props
+  const { label, options, isOpen, onToggle, onChange, closeOnSelect, value: values } = props
 
   const handleMultiSelection = (ev, { value: valueOptionSelected }) => {
+    
     const newValues = values.includes(valueOptionSelected)
-      ? values.filter(value => value !== valueOptionSelected)
-      : [...values, valueOptionSelected]
+    ? values.filter(value => value !== valueOptionSelected)
+    : [...values, valueOptionSelected]
 
-    onChange(ev, { values: newValues })
+    onChange(ev, { value: newValues })
     closeOnSelect && onToggle(ev, { open: false })
 
   }
 
-  const handleChangeTags = (ev, { tags: values }) => {
-    onChange(ev, { values })
+  const handleChangeTags = (ev, { tags: value }) => {
+    onChange(ev, { value })
     closeOnSelect && onToggle(ev, { open: false })
   }
 
@@ -61,4 +60,11 @@ const MoleculeSelectField = props => {
   
 }
 
-export default WithState({ multiselection: true })(WithOpenToggle(MoleculeSelectField))
+MoleculeSelectFieldMultiSelection.defaultProps = {
+  value: [],
+  onChange: () => {},
+  onToggle: () => {}
+}
+
+
+export default WithOpenToggle(MoleculeSelectFieldMultiSelection)
