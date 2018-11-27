@@ -11,7 +11,6 @@ const withState = BaseComponent => {
     }
 
     onChange = (e, {value}) => {
-      console.log( e, {value} )
       const {onChange} = this.props
       this.setState({value}, () => onChange(e, {value}))
 
