@@ -23,7 +23,6 @@ const MoleculeSelectFieldSingleSelection = props => {
   }
 
   const handleChange = (ev, { value }) => {
-    console.log(ev, { value })
     onChange(ev, { value })
     options && onToggle(ev, { open: true })
   }
