@@ -1,7 +1,5 @@
 import React, {Component} from 'react'
 
-const arrowDown = () => <span>▼</span>
-
 export default BaseComponent => {
   const displayName = BaseComponent.displayName
 
@@ -10,14 +8,12 @@ export default BaseComponent => {
 
     render() {
       const { onClick, ...props } = this.props
-      const inputProps = {
-        rightIcon: arrowDown,
-        onClickRightIcon: onClick,
-        charSize: 10
-      }
 
       return (
-        <BaseComponent {...inputProps} {...props} />
+        <div style={{ position: 'relative'}}>
+          <BaseComponent {...props} />
+          <span onClick={onClick} style={{ cursor: 'pointer', position: 'absolute', top: '10px', right: '10px'  }}>▼</span>
+        </div>
       )
     }
   }

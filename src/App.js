@@ -1,5 +1,5 @@
 import React, { Component } from "react"
-import MoleculeSelectField from "./components/MoleculeSelectField/index"
+import MoleculeSelectField from "./components/MoleculeSelectField"
 
 const beatles = [
   "John Lennon",
@@ -7,7 +7,16 @@ const beatles = [
   "George Harrison",
   "Ringo Starr"
 ]
-const bands = ["The Beatles", "Led Zeppelin", "Queen", "The Rolling Stones"]
+const bands = [
+  "The Beatles",
+  "Led Zeppelin",
+  "Queen",
+  "The Rolling Stones",
+  "The Who",
+  "Deep Purple",
+  "The Police"
+]
+
 
 class App extends Component {
   state = {
@@ -24,8 +33,10 @@ class App extends Component {
       <div className="App">
         <h1>App</h1>
 
-        <pre><code>{ JSON.stringify(this.state, null, 2) }</code></pre>
- 
+        <pre>
+          <code>{JSON.stringify(this.state, null, 2)}</code>
+        </pre>
+
         <div style={{ width: "500px" }}>
           <h2>Select (unique selection)</h2>
           <MoleculeSelectField
