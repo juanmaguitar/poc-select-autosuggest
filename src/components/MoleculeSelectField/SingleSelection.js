@@ -7,7 +7,7 @@ import AtomInput from "@s-ui/react-atom-input"
 import WithOpenToggle from '../hoc/withOpenToggle'
 import WithSelectUi from '../hoc/withSelectUi'
 
-import ListOption from './Option'
+import MoleculeDropdownListOption from '../MoleculeDropdownListOption'
 
 const BASE_CLASS = `MoleculeSelectField`
 const MoleculeInputSelect = WithSelectUi(AtomInput)
@@ -27,7 +27,7 @@ const MoleculeSelectFieldSingleSelection = props => {
       <MoleculeInputSelect value={value} onClick={onToggle} />
       <MoleculeDropdownList visible={isOpen}>
         {options.map((option, index) => (
-          <ListOption
+          <MoleculeDropdownListOption
             value={option}
             key={index}
             onSelect={handleSelection}

@@ -7,7 +7,7 @@ import MoleculeDropdownList from "../MoleculeDropdownList"
 import WithOpenToggle from '../hoc/withOpenToggle'
 import WithSelectUi from '../hoc/withSelectUi'
 
-import ListOption from './Option'
+import MoleculeDropdownListOption from '../MoleculeDropdownListOption'
 
 const BASE_CLASS = `MoleculeSelectField`
 const MoleculeInputSelect = WithSelectUi(MoleculeInputTags)
@@ -47,7 +47,7 @@ const MoleculeSelectFieldMultiSelection = props => {
       <MoleculeInputSelect tags={values} onClick={onToggle} tagsCloseIcon={closeIcon} onChangeTags={handleChangeTags}/>
       <MoleculeDropdownList checkbox visible={isOpen}>
         {options.map((option, index) => (
-          <ListOption
+          <MoleculeDropdownListOption
             value={option}
             key={index}
             onSelect={handleMultiSelection}
