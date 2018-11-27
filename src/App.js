@@ -1,5 +1,6 @@
 import React, { Component } from "react"
 import MoleculeSelectField from "./components/MoleculeSelectField"
+import MoleculeAutosuggest from "./components/MoleculeAutosuggest"
 
 const beatles = [
   "John Lennon",
@@ -7,6 +8,7 @@ const beatles = [
   "George Harrison",
   "Ringo Starr"
 ]
+
 const bands = [
   "The Beatles",
   "Led Zeppelin",
@@ -17,21 +19,61 @@ const bands = [
   "The Police"
 ]
 
+const countries = [
+  "India",
+  "Poland",
+  "Canary Islands",
+  "Luxembourg",
+  "Cameroon",
+  "Venezuela",
+  "Djibouti",
+  "Kyrgyzstan",
+  "Northern Mariana Islands",
+  "Cook Islands",
+  "St. Vincent & Grenadines",
+  "El Salvador",
+  "South Sudan",
+  "Indonesia",
+  "St. Kitts & Nevis",
+  "Congo - Kinshasa",
+  "Palau",
+  "Afghanistan",
+  "India",
+  "Sri Lanka",
+  "Germany",
+  "Denmark",
+  "Australia",
+  "Northern Mariana Islands",
+  "Equatorial Guinea"
+]
 
 class App extends Component {
   state = {
     favoriteBeatle: null,
-    favoriteBands: null
+    favoriteBands: null,
+    favoriteCountry: null
   }
 
   onChange = (field, e, { value }) => {
     this.setState({ [field]: value })
   }
 
+  onChangeAutosuggest = (e, { value }) => {
+    this.setState({ favoriteCountry: value })
+  }
+
+  get countries() {
+    const {favoriteCountry} = this.state
+    const currentValueCountry = favoriteCountry && favoriteCountry.toLowerCase()
+    return favoriteCountry
+      ? countries
+          .filter( country => country.toLowerCase().includes(currentValueCountry) )
+      : countries
+  }
+
   render() {
     return (
       <div className="App">
-
         <pre>
           <code>{JSON.stringify(this.state, null, 2)}</code>
         </pre>
@@ -53,6 +95,15 @@ class App extends Component {
             options={bands}
             onChange={this.onChange.bind(this, "favoriteBands")}
             multiselection
+          />
+        </div>
+
+        <div style={{ width: "500px" }}>
+          <h2>Autosuggest</h2>
+          <MoleculeAutosuggest
+            label="Favourite Country"
+            options={this.countries}
+            onChange={this.onChangeAutosuggest}
           />
         </div>
       </div>
