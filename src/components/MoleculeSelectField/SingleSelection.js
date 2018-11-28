@@ -1,6 +1,5 @@
 import React from "react"
 
-import AtomLabel from "@s-ui/react-atom-label"
 import MoleculeDropdownList from "../MoleculeDropdownList"
 import AtomInput from "@s-ui/react-atom-input"
 
@@ -14,7 +13,7 @@ const MoleculeInputSelect = WithSelectUi(AtomInput)
 
 const MoleculeSelectFieldSingleSelection = props => {
   
-  const { value, label, options, isOpen, onToggle, onChange, closeOnSelect } = props
+  const { value, options, isOpen, onToggle, onChange, closeOnSelect } = props
 
   const handleSelection = (ev, { value }) => {
     onChange(ev, { value })
@@ -23,7 +22,6 @@ const MoleculeSelectFieldSingleSelection = props => {
 
   return (
     <div className={BASE_CLASS}>
-      <AtomLabel name="atomLabelName" text={label} />
       <MoleculeInputSelect value={value} onClick={onToggle} />
       <MoleculeDropdownList visible={isOpen}>
         {options.map((option, index) => (

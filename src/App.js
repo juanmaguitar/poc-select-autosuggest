@@ -1,4 +1,6 @@
 import React, { Component } from "react"
+
+import AtomLabel from "@s-ui/react-atom-label"
 import MoleculeSelectField from "./components/MoleculeSelectField"
 import MoleculeAutosuggest from "./components/MoleculeAutosuggest"
 
@@ -80,8 +82,8 @@ class App extends Component {
 
         <div style={{ width: "500px" }}>
           <h2>Select (single selection)</h2>
+          <AtomLabel text="Favourite Beatle" />
           <MoleculeSelectField
-            label="Favourite Beatle"
             options={beatles}
             onChange={this.onChange.bind(this, "favoriteBeatle")}
             closeOnSelect
@@ -90,8 +92,8 @@ class App extends Component {
 
         <div style={{ width: "500px" }}>
           <h2>Select (multi selection)</h2>
+          <AtomLabel text="Favourite Band" />
           <MoleculeSelectField
-            label="Favourite Bands"
             options={bands}
             onChange={this.onChange.bind(this, "favoriteBands")}
             multiselection
@@ -100,8 +102,8 @@ class App extends Component {
 
         <div style={{ width: "500px" }}>
           <h2>Autosuggest</h2>
+          <AtomLabel text="Favourite Country" />
           <MoleculeAutosuggest
-            label="Favourite Country"
             options={this.countries}
             onChange={this.onChangeAutosuggest}
           />

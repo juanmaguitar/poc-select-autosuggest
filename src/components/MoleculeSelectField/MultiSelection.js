@@ -1,6 +1,5 @@
 import React from "react"
 
-import AtomLabel from "@s-ui/react-atom-label"
 import MoleculeInputTags from "@s-ui/react-molecule-input-tags"
 import MoleculeDropdownList from "../MoleculeDropdownList"
 
@@ -23,7 +22,7 @@ const closeIcon = (
 
 const MoleculeSelectFieldMultiSelection = props => {
 
-  const { label, options, isOpen, onToggle, onChange, closeOnSelect, value: values } = props
+  const { options, isOpen, onToggle, onChange, closeOnSelect, value: values } = props
 
   const handleMultiSelection = (ev, { value: valueOptionSelected }) => {
     
@@ -43,7 +42,6 @@ const MoleculeSelectFieldMultiSelection = props => {
 
   return (
     <div className={BASE_CLASS}>
-      <AtomLabel name="atomLabelName" text={label} />
       <MoleculeInputSelect tags={values} onClick={onToggle} tagsCloseIcon={closeIcon} onChangeTags={handleChangeTags}/>
       <MoleculeDropdownList checkbox visible={isOpen}>
         {options.map((option, index) => (
